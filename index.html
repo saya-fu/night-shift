@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -31,41 +32,56 @@
   .header{text-align:center;padding:2px 0;}
   .header-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:0.7;margin-bottom:3px;}
   h1{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;}
-  .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-  .card.blue::before{background:linear-gradient(90deg,transparent,var(--accent),transparent);}
-  .card.orange::before{background:linear-gradient(90deg,transparent,var(--accent2),transparent);}
-  .card-title{font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-  .card.blue .card-title{color:var(--accent);}
-  .card.orange .card-title{color:var(--accent2);}
-  .card-title::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-  .card.blue .card-title::before{background:var(--accent);box-shadow:0 0 6px var(--accent);}
-  .card.orange .card-title::before{background:var(--accent2);box-shadow:0 0 6px var(--accent2);}
-  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
-  .drum-group{display:flex;align-items:center;gap:8px;}
-  .drum-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-  .drum{position:relative;width:100%;height:108px;overflow:hidden;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(--border);cursor:ns-resize;user-select:none;touch-action:none;}
-  .drum::before,.drum::after{content:'';position:absolute;left:0;right:0;height:34px;z-index:2;pointer-events:none;}
-  .drum::before{top:0;background:linear-gradient(to bottom,rgba(14,26,58,0.95),transparent);}
-  .drum::after{bottom:0;background:linear-gradient(to top,rgba(14,26,58,0.95),transparent);}
-  .drum-highlight{position:absolute;top:50%;left:0;right:0;height:36px;transform:translateY(-50%);border-top:1px solid;border-bottom:1px solid;z-index:1;pointer-events:none;}
-  .card.blue .drum-highlight{background:rgba(0,212,255,0.09);border-color:rgba(0,212,255,0.28);}
-  .card.orange .drum-highlight{background:rgba(255,107,53,0.09);border-color:rgba(255,107,53,0.28);}
-  .drum-list{position:absolute;width:100%;will-change:transform;}
-  .drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:20px;color:var(--muted);position:relative;z-index:3;transition:color 0.1s;}
-  .drum-item.selected{font-size:26px;font-weight:700;}
-  .card.blue .drum-item.selected{color:var(--accent);}
-  .card.orange .drum-item.selected{color:var(--accent2);}
-  .drum-unit{font-size:11px;color:var(--muted);letter-spacing:1px;}
-  .colon{font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--muted);flex-shrink:0;padding-bottom:20px;}
-  .result-card{background:var(--panel);border:1px solid rgba(127,255,107,0.25);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;text-align:center;}
-  .result-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent3),transparent);}
-  .result-label{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--accent3);margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:6px;}
-  .result-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent3);box-shadow:0 0 6px var(--accent3);animation:pulse 2s infinite;}
-  .result-time{font-family:'Share Tech Mono',monospace;font-size:54px;color:var(--accent3);text-shadow:0 0 24px rgba(127,255,107,0.5);line-height:1;margin-bottom:4px;}
-  .result-sub{font-size:11px;color:var(--muted);line-height:1.7;}
-  .result-sub span{color:var(--text);font-weight:700;}
+
+.card{background:var(–panel);border:1px solid var(–border);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;}
+.card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;}
+.card.blue::before{background:linear-gradient(90deg,transparent,var(–accent),transparent);}
+.card.orange::before{background:linear-gradient(90deg,transparent,var(–accent2),transparent);}
+
+/* タイトル文字サイズをh1と同じ18px */
+.card-title{font-size:18px;font-weight:900;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.card.blue .card-title{color:#fff;}
+.card.orange .card-title{color:#fff;}
+
+.card-title::before{content:’’;display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.card.blue .card-title::before{background:var(–accent);box-shadow:0 0 6px var(–accent);}
+.card.orange .card-title::before{background:var(–accent2);box-shadow:0 0 6px var(–accent2);}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+
+.drum-group{display:flex;align-items:center;gap:8px;}
+.drum-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+
+.drum{position:relative;width:100%;height:108px;overflow:hidden;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(–border);cursor:ns-resize;user-select:none;touch-action:none;}
+.drum::before,.drum::after{content:’’;position:absolute;left:0;right:0;height:34px;z-index:2;pointer-events:none;}
+.drum::before{top:0;background:linear-gradient(to bottom,rgba(14,26,58,0.95),transparent);}
+.drum::after{bottom:0;background:linear-gradient(to top,rgba(14,26,58,0.95),transparent);}
+
+.drum-highlight{position:absolute;top:50%;left:0;right:0;height:36px;transform:translateY(-50%);border-top:1px solid;border-bottom:1px solid;z-index:1;pointer-events:none;}
+.card.blue .drum-highlight{background:rgba(0,212,255,0.09);border-color:rgba(0,212,255,0.28);}
+.card.orange .drum-highlight{background:rgba(255,107,53,0.09);border-color:rgba(255,107,53,0.28);}
+
+.drum-list{position:absolute;width:100%;will-change:transform;}
+.drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:‘Share Tech Mono’,monospace;font-size:20px;color:var(–muted);position:relative;z-index:3;transition:color 0.1s;}
+.drum-item.selected{font-size:26px;font-weight:700;}
+.card.blue .drum-item.selected{color:var(–accent);}
+.card.orange .drum-item.selected{color:var(–accent2);}
+
+.drum-unit{font-size:11px;color:var(–muted);letter-spacing:1px;}
+.colon{font-family:‘Share Tech Mono’,monospace;font-size:22px;color:var(–muted);flex-shrink:0;padding-bottom:20px;}
+
+.result-card{background:var(–panel);border:1px solid rgba(127,255,107,0.25);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;text-align:center;}
+.result-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–accent3),transparent);}
+
+/* 交代時間ラベルも18px */
+.result-label{font-size:18px;font-weight:900;letter-spacing:1px;color:#fff;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.result-label::before{content:’’;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(–accent3);box-shadow:0 0 6px var(–accent3);animation:pulse 2s infinite;flex-shrink:0;}
+
+.result-time{font-family:‘Share Tech Mono’,monospace;font-size:54px;color:var(–accent3);text-shadow:0 0 24px rgba(127,255,107,0.5);line-height:1;margin-bottom:4px;}
+.result-sub{font-size:11px;color:var(–muted);line-height:1.7;}
+.result-sub span{color:var(–text);font-weight:700;}
 </style>
+
 </head>
 <body>
 <div class="container">
@@ -73,8 +89,9 @@
     <div class="header-label">NIGHT SHIFT SYSTEM</div>
     <h1>夜勤 交代時間 計算ツール</h1>
   </div>
+
   <div class="card blue">
-    <div class="card-title">1人目　休憩開始時間</div>
+    <div class="card-title">1人目　休憩開始時刻</div>
     <div class="drum-group">
       <div class="drum-wrap">
         <div class="drum" id="drum-h1"><div class="drum-highlight"></div><div class="drum-list" id="list-h1"></div></div>
@@ -87,8 +104,9 @@
       </div>
     </div>
   </div>
+
   <div class="card orange">
-    <div class="card-title">2人目　休憩終了時間</div>
+    <div class="card-title">2人目　休憩終了時刻</div>
     <div class="drum-group">
       <div class="drum-wrap">
         <div class="drum" id="drum-h2"><div class="drum-highlight"></div><div class="drum-list" id="list-h2"></div></div>
@@ -101,77 +119,142 @@
       </div>
     </div>
   </div>
+
   <div class="result-card">
     <div class="result-label">交代時間</div>
     <div class="result-time" id="resultTime">01:15</div>
     <div class="result-sub" id="resultSub">20:30〜06:00の中間<br>1人目 <span>4時間45分</span>　2人目 <span>4時間45分</span></div>
   </div>
 </div>
+
 <script>
-  const state={h1:20,m1:30,h2:6,m2:0};
-  function pad(n){return String(n).padStart(2,'0');}
-  const ITEM_H=36,PAD=2;
-  function buildList(listEl,max,key){
-    listEl.innerHTML='';
-    for(let i=-PAD;i<=max+PAD;i++){
-      const el=document.createElement('div');
-      const v=((i%(max+1))+(max+1))%(max+1);
-      el.className='drum-item'+(i===state[key]?' selected':'');
-      el.textContent=pad(v);el.dataset.idx=i;
+  // 分は0か30のみ
+  const MINS = [0, 30];
+  const state = { h1:20, m1:1, h2:6, m2:0 };
+  // m1=1はindex=1つまり30分を意味する（MINS[1]=30）
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+  const ITEM_H = 36, PAD = 2;
+
+  // 時刻ドラム（0〜23）
+  function buildHourList(listEl, key){
+    const max = 23;
+    listEl.innerHTML = '';
+    for(let i = -PAD; i <= max+PAD; i++){
+      const el = document.createElement('div');
+      const v = ((i%(max+1))+(max+1))%(max+1);
+      el.className = 'drum-item' + (i === state[key] ? ' selected' : '');
+      el.textContent = pad(v);
+      el.dataset.idx = i;
       listEl.appendChild(el);
     }
   }
-  function applyPos(listEl,current,animated){
-    const offset=-((current+PAD)*ITEM_H)+(108/2-ITEM_H/2);
-    listEl.style.transition=animated?'transform 0.18s ease':'none';
-    listEl.style.transform='translateY('+offset+'px)';
-    listEl.querySelectorAll('.drum-item').forEach(el=>{
-      el.classList.toggle('selected',parseInt(el.dataset.idx)===current);
+
+  // 分ドラム（0, 30のみ）
+  function buildMinList(listEl, key){
+    const count = MINS.length; // 2
+    listEl.innerHTML = '';
+    for(let i = -PAD; i <= count+PAD; i++){
+      const el = document.createElement('div');
+      const v = ((i % count) + count) % count;
+      el.className = 'drum-item' + (i === state[key] ? ' selected' : '');
+      el.textContent = pad(MINS[v]);
+      el.dataset.idx = i;
+      listEl.appendChild(el);
+    }
+  }
+
+  function applyPos(listEl, current, animated){
+    const offset = -((current + PAD) * ITEM_H) + (108/2 - ITEM_H/2);
+    listEl.style.transition = animated ? 'transform 0.18s ease' : 'none';
+    listEl.style.transform = 'translateY(' + offset + 'px)';
+    listEl.querySelectorAll('.drum-item').forEach(el => {
+      el.classList.toggle('selected', parseInt(el.dataset.idx) === current);
     });
   }
-  function initDrum(drumId,listId,max,key){
-    const drum=document.getElementById(drumId);
-    const list=document.getElementById(listId);
-    buildList(list,max,key);applyPos(list,state[key],false);
-    let startY=null,startVal=null,active=false;
-    function getY(e){return e.touches?e.touches[0].clientY:e.clientY;}
-    function start(e){e.preventDefault();startY=getY(e);startVal=state[key];active=true;}
+
+  function initHourDrum(drumId, listId, key){
+    const drum = document.getElementById(drumId);
+    const list = document.getElementById(listId);
+    const max = 23;
+    buildHourList(list, key);
+    applyPos(list, state[key], false);
+    let startY=null, startVal=null, active=false;
+    function getY(e){ return e.touches ? e.touches[0].clientY : e.clientY; }
+    function start(e){ e.preventDefault(); startY=getY(e); startVal=state[key]; active=true; }
     function move(e){
-      if(!active)return;e.preventDefault();
-      const delta=Math.round((startY-getY(e))/ITEM_H);
-      const nv=((startVal+delta)%(max+1)+(max+1))%(max+1);
-      if(nv!==state[key]){state[key]=nv;applyPos(list,nv,false);calculate();}
+      if(!active) return; e.preventDefault();
+      const delta = Math.round((startY - getY(e)) / ITEM_H);
+      const nv = ((startVal+delta)%(max+1)+(max+1))%(max+1);
+      if(nv !== state[key]){ state[key]=nv; applyPos(list,nv,false); calculate(); }
     }
-    function end(){active=false;}
-    drum.addEventListener('mousedown',start);
-    window.addEventListener('mousemove',move);
-    window.addEventListener('mouseup',end);
-    drum.addEventListener('touchstart',start,{passive:false});
-    drum.addEventListener('touchmove',move,{passive:false});
-    drum.addEventListener('touchend',end);
-    drum.addEventListener('wheel',e=>{
+    function end(){ active=false; }
+    drum.addEventListener('mousedown', start);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    drum.addEventListener('touchstart', start, {passive:false});
+    drum.addEventListener('touchmove', move, {passive:false});
+    drum.addEventListener('touchend', end);
+    drum.addEventListener('wheel', e=>{
       e.preventDefault();
-      state[key]=((state[key]+(e.deltaY>0?1:-1))%(max+1)+(max+1))%(max+1);
-      applyPos(list,state[key],true);calculate();
+      state[key] = ((state[key]+(e.deltaY>0?1:-1))%(max+1)+(max+1))%(max+1);
+      applyPos(list, state[key], true); calculate();
     },{passive:false});
   }
+
+  function initMinDrum(drumId, listId, key){
+    const drum = document.getElementById(drumId);
+    const list = document.getElementById(listId);
+    const count = MINS.length;
+    buildMinList(list, key);
+    applyPos(list, state[key], false);
+    let startY=null, startVal=null, active=false;
+    function getY(e){ return e.touches ? e.touches[0].clientY : e.clientY; }
+    function start(e){ e.preventDefault(); startY=getY(e); startVal=state[key]; active=true; }
+    function move(e){
+      if(!active) return; e.preventDefault();
+      const delta = Math.round((startY - getY(e)) / ITEM_H);
+      const nv = ((startVal+delta)%count+count)%count;
+      if(nv !== state[key]){ state[key]=nv; applyPos(list,nv,false); calculate(); }
+    }
+    function end(){ active=false; }
+    drum.addEventListener('mousedown', start);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    drum.addEventListener('touchstart', start, {passive:false});
+    drum.addEventListener('touchmove', move, {passive:false});
+    drum.addEventListener('touchend', end);
+    drum.addEventListener('wheel', e=>{
+      e.preventDefault();
+      state[key] = ((state[key]+(e.deltaY>0?1:-1))%count+count)%count;
+      applyPos(list, state[key], true); calculate();
+    },{passive:false});
+  }
+
   function calculate(){
-    let s=state.h1*60+state.m1,e=state.h2*60+state.m2;
-    if(e<=s)e+=1440;
-    const total=e-s,mid=s+Math.floor(total/2);
-    const mh=Math.floor(mid/60)%24,mm=mid%60;
-    document.getElementById('resultTime').textContent=pad(mh)+':'+pad(mm);
-    const half=Math.floor(total/2),rem=total-half;
-    const fD=m=>Math.floor(m/60)+'時間'+pad(m%60)+'分';
-    document.getElementById('resultSub').innerHTML=
-      pad(state.h1)+':'+pad(state.m1)+'〜'+pad(state.h2)+':'+pad(state.m2)+'の中間<br>'+
+    const m1val = MINS[state.m1];
+    const m2val = MINS[state.m2];
+    let s = state.h1*60 + m1val;
+    let e = state.h2*60 + m2val;
+    if(e <= s) e += 1440;
+    const total = e - s;
+    const mid = s + Math.floor(total/2);
+    const mh = Math.floor(mid/60)%24;
+    const mm = mid%60;
+    document.getElementById('resultTime').textContent = pad(mh)+':'+pad(mm);
+    const half = Math.floor(total/2), rem = total-half;
+    const fD = m => Math.floor(m/60)+'時間'+pad(m%60)+'分';
+    document.getElementById('resultSub').innerHTML =
+      pad(state.h1)+':'+pad(m1val)+'〜'+pad(state.h2)+':'+pad(m2val)+'の中間<br>'+
       '1人目 <span>'+fD(half)+'</span>　2人目 <span>'+fD(rem)+'</span>';
   }
-  initDrum('drum-h1','list-h1',23,'h1');
-  initDrum('drum-m1','list-m1',59,'m1');
-  initDrum('drum-h2','list-h2',23,'h2');
-  initDrum('drum-m2','list-m2',59,'m2');
+
+  initHourDrum('drum-h1','list-h1','h1');
+  initMinDrum ('drum-m1','list-m1','m1');
+  initHourDrum('drum-h2','list-h2','h2');
+  initMinDrum ('drum-m2','list-m2','m2');
   calculate();
 </script>
+
 </body>
 </html>
