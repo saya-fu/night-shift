@@ -12,74 +12,87 @@
 <title>夜勤 交代時間計算</title>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#0b1130;--panel:#0e1a3a;--border:#1e3060;--accent:#00d4ff;--accent2:#ff6b35;--accent3:#7fff6b;--text:#c8d8f0;--muted:#3a5080;}
+  /* 全色を透明度なしの実色で定義 */
+  :root{
+    --bg:#0b1130;
+    --panel:#0e1a3a;
+    --panel-dark:#081028;
+    --border:#1e3060;
+    --accent:#00d4ff;
+    --accent2:#ff6b35;
+    --accent3:#7fff6b;
+    --text:#c8d8f0;
+    --muted:#3a5080;
+    --drum-bg:#060e24;
+    --drum-fade-top:#0b1739;
+    --drum-hl-blue:#0a2540;
+    --drum-hl-orange:#2a1008;
+  }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{width:100%;background:var(--bg);}
+  html{background:#0b1130;}
   body{
     font-family:'Zen Kaku Gothic New',sans-serif;
-    color:var(--text);
+    color:#c8d8f0;
     min-height:100dvh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     padding:12px 16px;
-    background:var(--bg);
+    background:#0b1130;
   }
   body::before{
     content:'';position:fixed;inset:0;
-    background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
+    background-image:linear-gradient(#0d1640 1px,transparent 1px),linear-gradient(90deg,#0d1640 1px,transparent 1px);
     background-size:40px 40px;pointer-events:none;
   }
   .container{position:relative;z-index:1;width:100%;max-width:420px;display:flex;flex-direction:column;gap:10px;}
   .header{text-align:center;padding:2px 0;}
-  .header-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--accent);opacity:0.7;margin-bottom:3px;}
+  .header-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:#00d4ff;opacity:0.7;margin-bottom:3px;}
   h1{font-size:18px;font-weight:900;color:#fff;letter-spacing:1px;}
 
-.card{background:var(–panel);border:1px solid var(–border);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;}
+.card{background:#0e1a3a;border:1px solid #1e3060;border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;}
 .card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;}
-.card.blue::before{background:linear-gradient(90deg,transparent,var(–accent),transparent);}
-.card.orange::before{background:linear-gradient(90deg,transparent,var(–accent2),transparent);}
+.card.blue::before{background:linear-gradient(90deg,#0b1130,#00d4ff,#0b1130);}
+.card.orange::before{background:linear-gradient(90deg,#0b1130,#ff6b35,#0b1130);}
 
-/* タイトル文字サイズをh1と同じ18px */
-.card-title{font-size:18px;font-weight:900;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.card.blue .card-title{color:#fff;}
-.card.orange .card-title{color:#fff;}
-
+.card-title{font-size:18px;font-weight:900;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:8px;color:#fff;}
 .card-title::before{content:’’;display:inline-block;width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.card.blue .card-title::before{background:var(–accent);box-shadow:0 0 6px var(–accent);}
-.card.orange .card-title::before{background:var(–accent2);box-shadow:0 0 6px var(–accent2);}
+.card.blue .card-title::before{background:#00d4ff;box-shadow:0 0 6px #00d4ff;}
+.card.orange .card-title::before{background:#ff6b35;box-shadow:0 0 6px #ff6b35;}
 
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
 
 .drum-group{display:flex;align-items:center;gap:8px;}
 .drum-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
 
-.drum{position:relative;width:100%;height:108px;overflow:hidden;border-radius:10px;background:rgba(0,0,0,0.35);border:1px solid var(–border);cursor:ns-resize;user-select:none;touch-action:none;}
+.drum{position:relative;width:100%;height:108px;overflow:hidden;border-radius:10px;background:#060e24;border:1px solid #1e3060;cursor:ns-resize;user-select:none;touch-action:none;}
+/* グラデ：背景色ベースで透明なし */
 .drum::before,.drum::after{content:’’;position:absolute;left:0;right:0;height:34px;z-index:2;pointer-events:none;}
-.drum::before{top:0;background:linear-gradient(to bottom,rgba(14,26,58,0.95),transparent);}
-.drum::after{bottom:0;background:linear-gradient(to top,rgba(14,26,58,0.95),transparent);}
+.card.blue .drum::before{top:0;background:linear-gradient(to bottom,#0e1a3a,#060e2400);}
+.card.blue .drum::after{bottom:0;background:linear-gradient(to top,#0e1a3a,#060e2400);}
+.card.orange .drum::before{top:0;background:linear-gradient(to bottom,#0e1a3a,#060e2400);}
+.card.orange .drum::after{bottom:0;background:linear-gradient(to top,#0e1a3a,#060e2400);}
 
 .drum-highlight{position:absolute;top:50%;left:0;right:0;height:36px;transform:translateY(-50%);border-top:1px solid;border-bottom:1px solid;z-index:1;pointer-events:none;}
-.card.blue .drum-highlight{background:rgba(0,212,255,0.09);border-color:rgba(0,212,255,0.28);}
-.card.orange .drum-highlight{background:rgba(255,107,53,0.09);border-color:rgba(255,107,53,0.28);}
+.card.blue .drum-highlight{background:#0a2540;border-color:#00a0c0;}
+.card.orange .drum-highlight{background:#2a1008;border-color:#c05020;}
 
 .drum-list{position:absolute;width:100%;will-change:transform;}
-.drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:‘Share Tech Mono’,monospace;font-size:20px;color:var(–muted);position:relative;z-index:3;transition:color 0.1s;}
+.drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:‘Share Tech Mono’,monospace;font-size:20px;color:#3a5080;position:relative;z-index:3;transition:color 0.1s;}
 .drum-item.selected{font-size:26px;font-weight:700;}
-.card.blue .drum-item.selected{color:var(–accent);}
-.card.orange .drum-item.selected{color:var(–accent2);}
+.card.blue .drum-item.selected{color:#00d4ff;}
+.card.orange .drum-item.selected{color:#ff6b35;}
 
-.drum-unit{font-size:11px;color:var(–muted);letter-spacing:1px;}
-.colon{font-family:‘Share Tech Mono’,monospace;font-size:22px;color:var(–muted);flex-shrink:0;padding-bottom:20px;}
+.drum-unit{font-size:11px;color:#3a5080;letter-spacing:1px;}
+.colon{font-family:‘Share Tech Mono’,monospace;font-size:22px;color:#3a5080;flex-shrink:0;padding-bottom:20px;}
 
-.result-card{background:var(–panel);border:1px solid rgba(127,255,107,0.25);border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;text-align:center;}
-.result-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–accent3),transparent);}
+.result-card{background:#0e1a3a;border:1px solid #2a6040;border-radius:14px;padding:12px 14px;position:relative;overflow:hidden;text-align:center;}
+.result-card::before{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#0b1130,#7fff6b,#0b1130);}
 
-/* 交代時間ラベルも18px */
 .result-label{font-size:18px;font-weight:900;letter-spacing:1px;color:#fff;margin-bottom:4px;display:flex;align-items:center;justify-content:center;gap:8px;}
-.result-label::before{content:’’;display:inline-block;width:8px;height:8px;border-radius:50%;background:var(–accent3);box-shadow:0 0 6px var(–accent3);animation:pulse 2s infinite;flex-shrink:0;}
+.result-label::before{content:’’;display:inline-block;width:8px;height:8px;border-radius:50%;background:#7fff6b;box-shadow:0 0 6px #7fff6b;animation:pulse 2s infinite;flex-shrink:0;}
 
-.result-time{font-family:‘Share Tech Mono’,monospace;font-size:54px;color:var(–accent3);text-shadow:0 0 24px rgba(127,255,107,0.5);line-height:1;margin-bottom:4px;}
-.result-sub{font-size:11px;color:var(–muted);line-height:1.7;}
-.result-sub span{color:var(–text);font-weight:700;}
+.result-time{font-family:‘Share Tech Mono’,monospace;font-size:54px;color:#7fff6b;text-shadow:0 0 24px #3a8040;line-height:1;margin-bottom:4px;}
+.result-sub{font-size:11px;color:#3a5080;line-height:1.7;}
+.result-sub span{color:#c8d8f0;font-weight:700;}
 </style>
 
 </head>
@@ -128,131 +141,84 @@
 </div>
 
 <script>
-  // 分は0か30のみ
   const MINS = [0, 30];
   const state = { h1:20, m1:1, h2:6, m2:0 };
-  // m1=1はindex=1つまり30分を意味する（MINS[1]=30）
-
   function pad(n){ return String(n).padStart(2,'0'); }
-  const ITEM_H = 36, PAD = 2;
+  const ITEM_H=36, PAD=2;
 
-  // 時刻ドラム（0〜23）
   function buildHourList(listEl, key){
-    const max = 23;
-    listEl.innerHTML = '';
-    for(let i = -PAD; i <= max+PAD; i++){
-      const el = document.createElement('div');
-      const v = ((i%(max+1))+(max+1))%(max+1);
-      el.className = 'drum-item' + (i === state[key] ? ' selected' : '');
-      el.textContent = pad(v);
-      el.dataset.idx = i;
+    const max=23; listEl.innerHTML='';
+    for(let i=-PAD;i<=max+PAD;i++){
+      const el=document.createElement('div');
+      const v=((i%(max+1))+(max+1))%(max+1);
+      el.className='drum-item'+(i===state[key]?' selected':'');
+      el.textContent=pad(v); el.dataset.idx=i;
       listEl.appendChild(el);
     }
   }
-
-  // 分ドラム（0, 30のみ）
   function buildMinList(listEl, key){
-    const count = MINS.length; // 2
-    listEl.innerHTML = '';
-    for(let i = -PAD; i <= count+PAD; i++){
-      const el = document.createElement('div');
-      const v = ((i % count) + count) % count;
-      el.className = 'drum-item' + (i === state[key] ? ' selected' : '');
-      el.textContent = pad(MINS[v]);
-      el.dataset.idx = i;
+    const count=MINS.length; listEl.innerHTML='';
+    for(let i=-PAD;i<=count+PAD;i++){
+      const el=document.createElement('div');
+      const v=((i%count)+count)%count;
+      el.className='drum-item'+(i===state[key]?' selected':'');
+      el.textContent=pad(MINS[v]); el.dataset.idx=i;
       listEl.appendChild(el);
     }
   }
-
-  function applyPos(listEl, current, animated){
-    const offset = -((current + PAD) * ITEM_H) + (108/2 - ITEM_H/2);
-    listEl.style.transition = animated ? 'transform 0.18s ease' : 'none';
-    listEl.style.transform = 'translateY(' + offset + 'px)';
-    listEl.querySelectorAll('.drum-item').forEach(el => {
-      el.classList.toggle('selected', parseInt(el.dataset.idx) === current);
+  function applyPos(listEl,current,animated){
+    const offset=-((current+PAD)*ITEM_H)+(108/2-ITEM_H/2);
+    listEl.style.transition=animated?'transform 0.18s ease':'none';
+    listEl.style.transform='translateY('+offset+'px)';
+    listEl.querySelectorAll('.drum-item').forEach(el=>{
+      el.classList.toggle('selected',parseInt(el.dataset.idx)===current);
     });
   }
-
-  function initHourDrum(drumId, listId, key){
-    const drum = document.getElementById(drumId);
-    const list = document.getElementById(listId);
-    const max = 23;
-    buildHourList(list, key);
-    applyPos(list, state[key], false);
-    let startY=null, startVal=null, active=false;
-    function getY(e){ return e.touches ? e.touches[0].clientY : e.clientY; }
-    function start(e){ e.preventDefault(); startY=getY(e); startVal=state[key]; active=true; }
+  function initDrum(drumId,listId,key,isMin){
+    const drum=document.getElementById(drumId);
+    const list=document.getElementById(listId);
+    const max=isMin?MINS.length-1:23;
+    if(isMin) buildMinList(list,key); else buildHourList(list,key);
+    applyPos(list,state[key],false);
+    let startY=null,startVal=null,active=false;
+    function getY(e){return e.touches?e.touches[0].clientY:e.clientY;}
+    function start(e){e.preventDefault();startY=getY(e);startVal=state[key];active=true;}
     function move(e){
-      if(!active) return; e.preventDefault();
-      const delta = Math.round((startY - getY(e)) / ITEM_H);
-      const nv = ((startVal+delta)%(max+1)+(max+1))%(max+1);
-      if(nv !== state[key]){ state[key]=nv; applyPos(list,nv,false); calculate(); }
+      if(!active)return; e.preventDefault();
+      const delta=Math.round((startY-getY(e))/ITEM_H);
+      const nv=((startVal+delta)%(max+1)+(max+1))%(max+1);
+      if(nv!==state[key]){state[key]=nv;applyPos(list,nv,false);calculate();}
     }
-    function end(){ active=false; }
-    drum.addEventListener('mousedown', start);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', end);
-    drum.addEventListener('touchstart', start, {passive:false});
-    drum.addEventListener('touchmove', move, {passive:false});
-    drum.addEventListener('touchend', end);
-    drum.addEventListener('wheel', e=>{
+    function end(){active=false;}
+    drum.addEventListener('mousedown',start);
+    window.addEventListener('mousemove',move);
+    window.addEventListener('mouseup',end);
+    drum.addEventListener('touchstart',start,{passive:false});
+    drum.addEventListener('touchmove',move,{passive:false});
+    drum.addEventListener('touchend',end);
+    drum.addEventListener('wheel',e=>{
       e.preventDefault();
-      state[key] = ((state[key]+(e.deltaY>0?1:-1))%(max+1)+(max+1))%(max+1);
-      applyPos(list, state[key], true); calculate();
+      state[key]=((state[key]+(e.deltaY>0?1:-1))%(max+1)+(max+1))%(max+1);
+      applyPos(list,state[key],true);calculate();
     },{passive:false});
   }
-
-  function initMinDrum(drumId, listId, key){
-    const drum = document.getElementById(drumId);
-    const list = document.getElementById(listId);
-    const count = MINS.length;
-    buildMinList(list, key);
-    applyPos(list, state[key], false);
-    let startY=null, startVal=null, active=false;
-    function getY(e){ return e.touches ? e.touches[0].clientY : e.clientY; }
-    function start(e){ e.preventDefault(); startY=getY(e); startVal=state[key]; active=true; }
-    function move(e){
-      if(!active) return; e.preventDefault();
-      const delta = Math.round((startY - getY(e)) / ITEM_H);
-      const nv = ((startVal+delta)%count+count)%count;
-      if(nv !== state[key]){ state[key]=nv; applyPos(list,nv,false); calculate(); }
-    }
-    function end(){ active=false; }
-    drum.addEventListener('mousedown', start);
-    window.addEventListener('mousemove', move);
-    window.addEventListener('mouseup', end);
-    drum.addEventListener('touchstart', start, {passive:false});
-    drum.addEventListener('touchmove', move, {passive:false});
-    drum.addEventListener('touchend', end);
-    drum.addEventListener('wheel', e=>{
-      e.preventDefault();
-      state[key] = ((state[key]+(e.deltaY>0?1:-1))%count+count)%count;
-      applyPos(list, state[key], true); calculate();
-    },{passive:false});
-  }
-
   function calculate(){
-    const m1val = MINS[state.m1];
-    const m2val = MINS[state.m2];
-    let s = state.h1*60 + m1val;
-    let e = state.h2*60 + m2val;
-    if(e <= s) e += 1440;
-    const total = e - s;
-    const mid = s + Math.floor(total/2);
-    const mh = Math.floor(mid/60)%24;
-    const mm = mid%60;
-    document.getElementById('resultTime').textContent = pad(mh)+':'+pad(mm);
-    const half = Math.floor(total/2), rem = total-half;
-    const fD = m => Math.floor(m/60)+'時間'+pad(m%60)+'分';
-    document.getElementById('resultSub').innerHTML =
-      pad(state.h1)+':'+pad(m1val)+'〜'+pad(state.h2)+':'+pad(m2val)+'の中間<br>'+
+    const m1v=MINS[state.m1], m2v=MINS[state.m2];
+    let s=state.h1*60+m1v, e=state.h2*60+m2v;
+    if(e<=s)e+=1440;
+    const total=e-s, mid=s+Math.floor(total/2);
+    const mh=Math.floor(mid/60)%24, mm=mid%60;
+    document.getElementById('resultTime').textContent=pad(mh)+':'+pad(mm);
+    const half=Math.floor(total/2),rem=total-half;
+    const fD=m=>Math.floor(m/60)+'時間'+pad(m%60)+'分';
+    document.getElementById('resultSub').innerHTML=
+      pad(state.h1)+':'+pad(m1v)+'〜'+pad(state.h2)+':'+pad(m2v)+'の中間<br>'+
       '1人目 <span>'+fD(half)+'</span>　2人目 <span>'+fD(rem)+'</span>';
   }
-
-  initHourDrum('drum-h1','list-h1','h1');
-  initMinDrum ('drum-m1','list-m1','m1');
-  initHourDrum('drum-h2','list-h2','h2');
-  initMinDrum ('drum-m2','list-m2','m2');
+  initDrum('drum-h1','list-h1','h1',false);
+  initDrum('drum-m1','list-m1','m1',true);
+  initDrum('drum-h2','list-h2','h2',false);
+  initDrum('drum-m2','list-m2','m2',true);
   calculate();
 </script>
 
