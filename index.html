@@ -54,12 +54,12 @@
 .card.orange .drum::before{top:0;background:linear-gradient(to bottom,#0e1a3a 60%,#0e1a3a00);}
 .card.orange .drum::after{bottom:0;background:linear-gradient(to top,#0e1a3a 60%,#0e1a3a00);}
 
-.drum-highlight{position:absolute;top:50%;left:0;right:0;height:36px;transform:translateY(-50%);border-top:2px solid;border-bottom:2px solid;z-index:1;pointer-events:none;}
+.drum-highlight{position:absolute;top:50%;left:0;right:0;height:36px;transform:translateY(-50%);border-top:2px solid;border-bottom:2px solid;z-index:0;pointer-events:none;}
 .card.blue .drum-highlight{background:#0d3a5a;border-color:#00d4ff;}
 .card.orange .drum-highlight{background:#4a1e00;border-color:#ff6b35;}
 
-.drum-list{position:absolute;width:100%;will-change:transform;}
-.drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:‘Share Tech Mono’,monospace;font-size:20px;color:#2a4060;position:relative;z-index:3;transition:color 0.1s;}
+.drum-list{position:absolute;width:100%;will-change:transform;z-index:3;}
+.drum-item{height:36px;display:flex;align-items:center;justify-content:center;font-family:‘Share Tech Mono’,monospace;font-size:20px;color:#4a6888;transition:color 0.1s;}
 .drum-item.selected{font-size:28px;font-weight:700;}
 .card.blue .drum-item.selected{color:#00d4ff;}
 .card.orange .drum-item.selected{color:#ff8c55;}
